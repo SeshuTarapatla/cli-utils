@@ -3,15 +3,22 @@ name = "cli-utils"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "SeshuTarapatla", email = "seshu.tarapatla@gmail.com" }
-]
+authors = [{ name = "SeshuTarapatla", email = "seshu.tarapatla@gmail.com" }]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pydantic>=2.12.5",
+    "rich>=14.2.0",
+    "typer>=0.21.1",
+]
 
 [project.scripts]
-cli-utils = "cli_utils:main"
+add-to-path = "cli_utils.add_to_path:_run"
 
 [build-system]
 requires = ["uv_build>=0.9.22,<0.10.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+]
