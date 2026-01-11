@@ -66,7 +66,7 @@ class WtHandler:
     ) -> WtProfile | None:
         index = None
         for i, profile in enumerate(self.profiles):
-            if profile[field] == value:
+            if profile.get(field) == value:
                 index = i
                 break
         if not index:
@@ -80,7 +80,7 @@ class WtHandler:
         self, value: str, field: Literal["guid", "name", "commandline"]
     ) -> WtProfile | None:
         for profile in self.profiles:
-            if profile[field] == value:
+            if profile.get(field) == value:
                 return profile
 
     @property
