@@ -7,18 +7,18 @@ authors = [{ name = "SeshuTarapatla", email = "seshu.tarapatla@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2.12.5",
+    "pyyaml>=6.0.3",
     "rich>=14.2.0",
     "typer>=0.21.1",
 ]
 
 [project.scripts]
 add-to-path = "cli_utils.add_to_path:_run"
+wt-profile = "cli_utils.wt_profile:app"
 
 [build-system]
 requires = ["uv_build>=0.9.22,<0.10.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
-dev = [
-    "ipykernel>=7.1.0",
-]
+dev = ["ipykernel>=7.1.0"]

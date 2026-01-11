@@ -1,7 +1,6 @@
 import ctypes
 import winreg
 from pathlib import Path
-from typing import Annotated
 
 from rich import print
 from typer import Argument, BadParameter, run
@@ -33,7 +32,7 @@ class WinUserPathEnvVarHandler:
             return winreg.QueryValueEx(key, "Path")
 
     @staticmethod
-    def add_path_to_user_reg(path: Path):
+    def update_user_path_reg(path: Path):
         with winreg.OpenKey(
             winreg.HKEY_CURRENT_USER, r"Environment", 0, winreg.KEY_SET_VALUE
         ) as key:
@@ -44,16 +43,13 @@ class WinUserPathEnvVarHandler:
 
 
 def add_to_path(
-    path: Annotated[
-        Path,
-        Argument(
-            help="Path to add to the user's PATH environment variable.",
-            callback=WinUserPathEnvVarHandler.validate_path,
-        ),
-    ],
+    path: Path = Argument(
+        help="Path to add to the user's PATH environment variable.",
+        callback=WinUserPathEnvVarHandler.validate_path,
+    ),
 ):
     if not WinUserPathEnvVarHandler.check_if_exists_in_full_path(path):
-        WinUserPathEnvVarHandler.add_path_to_user_reg(path)
+        WinUserPathEnvVarHandler.update_user_path_reg(path)
         print(
             f"[blue]INFO[/] : Added [bold magenta]WindowsPath[/]([green]'{path}'[/]) successfully to the PATH."
         )
