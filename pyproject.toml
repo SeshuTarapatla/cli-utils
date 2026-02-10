@@ -9,12 +9,14 @@ dependencies = [
     "pydantic>=2.12.5",
     "pyyaml>=6.0.3",
     "rich>=14.2.0",
+    "telethon>=1.42.0",
     "typer>=0.21.1",
 ]
 
 [project.scripts]
 add-to-path = "cli_utils.add_to_path:_run"
 wt-profile = "cli_utils.wt_profile:app"
+tl = "cli_utils.telegram:telegram"
 
 [build-system]
 requires = ["uv_build>=0.9.22,<0.10.0"]
